@@ -7,7 +7,7 @@ Group:		Amusements/Games
 Source:		ftp://sunsite.unc.edu:/pub/Linux/X11/games/strategy/%{name}-%{version}.tar.gz
 Patch0:		xgammon-0.98-config.patch
 Patch1:		xgammon-0.98-dirent.patch
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		/usr/X11R6/man
