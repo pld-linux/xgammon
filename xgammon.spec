@@ -2,7 +2,7 @@ Summary:	An X Window System based backgammon game
 Summary(pl):	Gra backgammon pod X Window System
 Name:		xgammon
 Version:	0.98
-Release:	14
+Release:	15
 License:	GPL
 Group:		X11/Applications/Games
 Group(de):	X11/Applikationen/Spiele
@@ -22,6 +22,12 @@ person. Xgammon also supports playing a game against another person on
 a remote X terminal, and will display a second board there for their
 use.
 
+%description -l pl
+Xgammon to gra backgammon dla X Window System. Mo¿na graæ przeciwko
+komputerowi lub drugiej osobie. Xgammon obs³uguje grê przeciwko
+drugiej osobie na zdalnym X terminalu - w takim przypadku wy¶wietla
+dla niej drug± planszê.
+
 %prep
 %setup -q -c
 %patch0 -p1
@@ -34,17 +40,18 @@ xmkmf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/X11/wmconfig,%{_mandir}/man6}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games,%{_mandir}/man6}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install xgammon.6 $RPM_BUILD_ROOT%{_mandir}/man6/xgammon.6x
 
-cat > $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmconfig/xgammon <<EOF
-xgammon name "xgammon"
-xgammon description "Backgamoon"
-xgammon group Games/Strategy
-xgammon exec "xgammon &"
+cat > $RPM_BUILD_ROOT%{_applnkdir}/Games/xgammon.desktop <<EOF
+Name=xgammon
+Comment=Backgammon
+Exec=xgammon
+Terminal=0
+Type=Application
 EOF
 
 %clean
@@ -56,4 +63,4 @@ rm -rf $RPM_BUILD_ROOT
 %config %{_libdir}/X11/app-defaults/XGammon
 %{_datadir}/xgammon
 %{_mandir}/man6/xgammon.6x*
-%config %{_sysconfdir}/X11/wmconfig/xgammon
+%{_applnkdir}/Games/xgammon.desktop
