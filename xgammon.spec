@@ -1,13 +1,16 @@
-Summary: An X Window System based backgammon game.
-Name: xgammon
-Version: 0.98
-Release: 14
-Copyright: GPL
-Group: Amusements/Games
-Source: ftp://sunsite.unc.edu:/pub/Linux/X11/games/strategy/xgammon-0.98.tar.gz
-Patch0: xgammon-0.98-config.patch
-Patch1: xgammon-0.98-dirent.patch
-BuildRoot: /var/tmp/xgammon-root
+Summary:	An X Window System based backgammon game.
+Name:		xgammon
+Version:	0.98
+Release:	14
+Copyright:	GPL
+Group:		Amusements/Games
+Source:		ftp://sunsite.unc.edu:/pub/Linux/X11/games/strategy/%{name}-%{version}.tar.gz
+Patch0:		xgammon-0.98-config.patch
+Patch1:		xgammon-0.98-dirent.patch
+BuildRoot:	/tmp/%{name}-%{version}-root
+
+%define		_prefix		/usr/X11R6
+%define		_mandir		/usr/X11R6/man
 
 %description
 Xgammon is an X Window System based backgammon game.  Xgammon allows you
@@ -17,21 +20,25 @@ X terminal, and will display a second board there for their use.
 
 %prep
 %setup -q -c
-%patch0 -p1 -b .rhconfig
+%patch0 -p1
 %patch1 -p1
 
 %build
-export PATH=$PATH:.
 xmkmf
-make 
+make CXXDEBUGFLAGS="$RPM_OPT_FLAGS" \
+	CDEBUGFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/etc/X11/wmconfig
+install -d $RPM_BUILD_ROOT{/etc/X11/wmconfig,%{_mandir}/man6}
 
-make DESTDIR=$RPM_BUILD_ROOT install
-mkdir -p $RPM_BUILD_ROOT/usr/X11R6/man/man6
-install -m 644 xgammon.6 $RPM_BUILD_ROOT/usr/X11R6/man/man6/xgammon.6
+make install DESTDIR=$RPM_BUILD_ROOT
+
+install xgammon.6 $RPM_BUILD_ROOT%{_mandir}/man6/xgammon.6x
+
+strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/*
+
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man6/*
 
 cat > $RPM_BUILD_ROOT/etc/X11/wmconfig/xgammon <<EOF
 xgammon name "xgammon"
@@ -44,9 +51,9 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-,root,root)
-/usr/X11R6/bin/xgammon
-%config /usr/X11R6/lib/X11/app-defaults/XGammon
-/usr/X11R6/lib/X11/xgammon
-/usr/X11R6/man/man6/xgammon.6
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/xgammon
+%config %{_libdir}/X11/app-defaults/XGammon
+%{_datadir}/xgammon
+%{_mandir}/man6/xgammon.6x.gz
 %config /etc/X11/wmconfig/xgammon
