@@ -1,0 +1,20 @@
+--- xgammox/filemenu.c.marc	Sun Feb 25 12:56:09 1996
++++ xgammox/filemenu.c	Sun Feb 25 12:56:37 1996
+@@ -123,7 +123,7 @@
+ 
+     if (statbuf.st_mode & S_IFDIR) {		/* is directory */
+ 	strcat(entry->d_name, "/");
+-	++(entry->d_namlen);
++	++(entry->d_reclen);
+ 	return True;
+     }
+     if      (strcmp(entry->d_name + strlen(entry->d_name) - sizeof(".dvi") + 1, ".dvi") == 0) return False;
+@@ -132,7 +132,7 @@
+     else if (strcmp(entry->d_name + strlen(entry->d_name) - sizeof(".h") + 1, ".h") == 0) return False;
+     else if (*(entry)->d_name == '.') return False; /* hidden file */
+     else {
+-	++(entry->d_namlen);
++	++(entry->d_reclen);
+ 	return True;
+     }
+     return False;
