@@ -5,8 +5,6 @@ Version:	0.98
 Release:	15
 License:	GPL
 Group:		X11/Applications/Games
-Group(de):	X11/Applikationen/Spiele
-Group(pl):	X11/Aplikacje/Gry
 Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/games/strategy/%{name}-%{version}.tar.gz
 Patch0:		%{name}-0.98-config.patch
 Patch1:		%{name}-0.98-dirent.patch
