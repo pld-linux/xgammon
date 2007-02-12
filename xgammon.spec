@@ -1,5 +1,5 @@
 Summary:	An X Window System based backgammon game
-Summary(pl.UTF-8):   Gra backgammon pod X Window System
+Summary(pl.UTF-8):	Gra backgammon pod X Window System
 Name:		xgammon
 Version:	0.98
 Release:	15
