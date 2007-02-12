@@ -1,5 +1,5 @@
 Summary:	An X Window System based backgammon game
-Summary(pl):	Gra backgammon pod X Window System
+Summary(pl.UTF-8):   Gra backgammon pod X Window System
 Name:		xgammon
 Version:	0.98
 Release:	15
@@ -23,11 +23,11 @@ person. Xgammon also supports playing a game against another person on
 a remote X terminal, and will display a second board there for their
 use.
 
-%description -l pl
-Xgammon to gra backgammon dla X Window System. Mo¿na graæ przeciwko
-komputerowi lub drugiej osobie. Xgammon obs³uguje grê przeciwko
-drugiej osobie na zdalnym X terminalu - w takim przypadku wy¶wietla
-dla niej drug± planszê.
+%description -l pl.UTF-8
+Xgammon to gra backgammon dla X Window System. MoÅ¼na graÄ‡ przeciwko
+komputerowi lub drugiej osobie. Xgammon obsÅ‚uguje grÄ™ przeciwko
+drugiej osobie na zdalnym X terminalu - w takim przypadku wyÅ›wietla
+dla niej drugÄ… planszÄ™.
 
 %prep
 %setup -q -c
