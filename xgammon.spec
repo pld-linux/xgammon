@@ -6,8 +6,8 @@ Release:	15
 License:	GPL
 Group:		X11/Applications/Games
 #Source0:	ftp://sunsite.unc.edu/pub/Linux/X11/games/strategy/%{name}-%{version}.tar.gz
-#Source0-md5:	29d7b0299e046d4e534b974eb202253e
 Source0:	%{name}_%{version}a.orig.tar.gz
+#Source0-md5:	29d7b0299e046d4e534b974eb202253e
 # fetched from debian, and stored in distfiles
 Patch0:		%{name}-0.98-config.patch
 Patch1:		%{name}-0.98-dirent.patch
